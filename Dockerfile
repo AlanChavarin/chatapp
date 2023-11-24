@@ -1,4 +1,4 @@
-FROM node:12
+FROM node
 
 WORKDIR /app/backend
 
@@ -8,8 +8,8 @@ RUN npm install
 
 COPY backend/. .
 
-ENV PORT=8080
+ENV PORT=5000
 
-EXPOSE 8080
+EXPOSE 5000
 
 CMD ["npm", "run", "start"]

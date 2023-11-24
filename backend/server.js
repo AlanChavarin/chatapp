@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
-const PORT = 5000;
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbCon');
-
+const dotenv = require('dotenv').config()
 // Connect to MongoDB
 connectDB();
 
@@ -20,12 +19,12 @@ app.get('/', (req, res) => {
 // Import Routes
 app.use('/api/messages', require('./routes/messageRoutes'));
 
-// Listen for requests if we havesuccessully connected. That is when the open
+// Listen for requests if we have successully connected. That is when the open
 // event is fired.
 mongoose.connection.once('open', () => {
     console.log('MongoDB connection established successfully');
-    app.listen(PORT, () => {
-        console.log('Server started on port ' + PORT);
+    app.listen(process.env.PORT, () => {
+        console.log('Server started on port ' + process.env.PORT);
     });
 })
 
